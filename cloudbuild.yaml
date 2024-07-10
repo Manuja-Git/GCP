@@ -1,0 +1,24 @@
+steps:
+  # Build and push frontend Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/core-plate-424123-h0/frontend-ui:latest', './frontend']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/core-plate-424123-h0/frontend-ui:latest']
+
+  # Build and push backend Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/core-plate-424123-h0/backend-api:latest', './backend']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/core-plate-424123-h0/backend-api:latest']
+
+  # Apply Kubernetes deployments
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', './frontend/frontend-deployment.yaml']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', './backend/backend-deployment.yaml']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'

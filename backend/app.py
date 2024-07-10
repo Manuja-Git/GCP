@@ -1,4 +1,4 @@
-# Import necessary modules
+ # Import necessary modules
 from flask import Flask, request, jsonify, render_template_string
 import os
 import psycopg2
@@ -11,10 +11,10 @@ backend_service_ip = os.getenv("BACKEND_SERVICE_IP")
 
 # Database connection setup
 DATABASE_URL = (
-    f"dbname='{os.getenv('DB_NAME', 'myappdb')}' "
-    f"user='{os.getenv('DB_USER', 'manu')}' "
-    f"password='{os.getenv('DB_PASSWORD', 'Manu@427')}' "
-    f"host='{os.getenv('DB_HOST', '34.29.6.117')}'"
+    f"dbname='{os.getenv('DB_NAME')}' "
+    f"user='{os.getenv('DB_USER')}' "
+    f"password='{os.getenv('DB_PASSWORD')}' "
+    f"host='{os.getenv('DB_HOST')}'"
 )
 
 # Function to establish database connection
