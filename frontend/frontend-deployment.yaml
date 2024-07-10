@@ -14,19 +14,19 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/core-plate-424123-h0/frontend:latest
+        image: gcr.io/core-plate-424123-h0/frontend-ui:latest
         ports:
         - containerPort: 80
         env:
         - name: BACKEND_SERVICE_IP
-          value: "35.232.104.100"  # Replace with your actual backend service DNS name
+          value: "23.251.156.216"  # Replace with your actual backend service DNS name
       imagePullSecrets:
       - name: db-credentials
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: frontend-service
 spec:
   selector:
     app: frontend

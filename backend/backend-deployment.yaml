@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: gcr.io/core-plate-424123-h0/backend:latest
+        image: gcr.io/core-plate-424123-h0/backend-api:latest
         ports:
         - containerPort: 80
         env:
@@ -44,7 +44,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: backend-service
 spec:
   selector:
     app: backend
